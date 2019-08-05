@@ -38,14 +38,14 @@ abstract class GraphApI[VD, ED] {
   def subgraph(epred: EdgeTriplet[VD,ED] => Boolean = (x => true), vpred: (VertexId, VD) => Boolean = ((v, d) => true)): Graph[VD, ED]
   def mask[VD2, ED2](other: Graph[VD2, ED2]): Graph[VD, ED]
   def groupEdges(merge: (ED, ED) => ED): Graph[VD, ED]
-  // Join RDDs with the graph
+  // 聚合图
   def joinVertices[U](table: RDD[(VertexId, U)])(mapFunc: (VertexId, VD, U) => VD): Graph[VD, ED]
   def outerJoinVertices[U, VD2](other: RDD[(VertexId, U)])(mapFunc: (VertexId, VD, Option[U]) => VD2): Graph[VD2, ED]
-  // Aggregate information about adjacent triplets
+  // 聚合三元组
   def collectNeighborIds(edgeDirection: EdgeDirection): VertexRDD[Array[VertexId]]
   def collectNeighbors(edgeDirection: EdgeDirection): VertexRDD[Array[(VertexId, VD)]]
   def aggregateMessages[Msg: ClassTag](sendMsg: EdgeContext[VD, ED, Msg] => Unit, mergeMsg: (Msg, Msg) => Msg, tripletFields: TripletFields = TripletFields.All): VertexRDD[A]
-  // Iterative graph-parallel computation
+  // 图算法
   def pregel[A](initialMsg: A, maxIterations: Int, activeDirection: EdgeDirection)(
     vprog: (VertexId, VD, A) => VD,
     sendMsg: EdgeTriplet[VD, ED] => Iterator[(VertexId,A)],

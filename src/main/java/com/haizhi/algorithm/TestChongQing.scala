@@ -15,7 +15,7 @@ class TestChongQing extends AlgorithmMiner with Serializable{
   override def miner(): Unit = {
     val sc = getSparkContext(name())
     //读取一周的图构建数据,包涵删除边的数据。(可dump跑一周,也可在chongqing目录下将7天数据union到一起)
-    val oneWeekRdd = sc.textFile("/user/graph_builder/data/mongo-whole/chongqing17/parsed_20190726_09/image/invest_txt")
+    val oneWeekRdd = sc.textFile("/user/graph_builder/data/mongo-whole/chongqing17/parsed_20190802_00/image/invest_txt")
     val oneWeekKeyRdd =oneWeekRdd.map(line =>{
       val jv = parseJson(line)
       val key = getJsonValue(jv, "_key")
@@ -36,7 +36,7 @@ class TestChongQing extends AlgorithmMiner with Serializable{
       (key,line)
     }}
     //到此处一周数据已处理干净,开始和总数据融合whole_rdd
-    val whole_rdd = sc.textFile("/user/graph_builder/data/mongo-whole/result_whole/parsed_20190718_22/image/invest_txt").map(line =>{
+    val whole_rdd = sc.textFile("/user/graph_builder/data/mongo-whole/result_whole/parsed_20190725_22/image/invest_txt").map(line =>{
       val jv = parseJson(line)
       val key = getJsonValue(jv, "_key")
       (key,line)
@@ -50,6 +50,6 @@ class TestChongQing extends AlgorithmMiner with Serializable{
     val whole_result = whole_rdd.join(whole_subtract_result).map{case(key,(line,num)) =>{
       line
     }}
-    whole_result.union(week_result_rdd.map(m =>m._2)).saveAsTextFile("/user/graph_builder/data/mongo-whole/result_whole/parsed_20190725_22/image/invest_txt")
+    whole_result.union(week_result_rdd.map(m =>m._2)).saveAsTextFile("/user/graph_builder/data/mongo-whole/result_whole/parsed_20190801_22/image/invest_txt")
   }
 }

@@ -86,7 +86,6 @@ object TestUsedName {
     })
     result.flatMap { e => e.toIterator }.collect().take(10).foreach(println)
   }
-
   /**
     * 从arango获取公司实体中的经营状态
     */
@@ -115,7 +114,7 @@ object TestUsedName {
         val jv = parseJson(data)
         val from = getJsonValue(jv,"_from")
         val to = getJsonValue(jv,"_to")
-        if(from != to){
+        if(from.startsWith("Company")&&to.startsWith("Company")&&from != to){
           val query_to =
             s"""
                |for com in Company
@@ -130,21 +129,22 @@ object TestUsedName {
                |RETURN {business_status:com.business_status}
             """.stripMargin
           val business_status_from = ArangoTool.getArangoContent(query_from,"Company","business_status",arangoDB)
-          println("business_status_to="+business_status_to)
-          println("business_status_from="+business_status_from)
           val online = business_online.value
           //两家公司都是在营状态,则为两个公司实体,不做曾用名替换
-          if(online.contains(business_status_to)&& online.contains(business_status_from)){
-
-          }else{
-            data = jsonMerge(data,"_business_status",business_status_to)
+          if(business_status_from.length>0 && business_status_to.length>0){
+            if(online.contains(business_status_to)&& online.contains(business_status_from)){
+              //
+            }else{
+              data = jsonMerge(data,"_business_status",business_status_to)
+            }
           }
-          rs += data
         }
+        rs += data
       }
       arangoClient.shutdown()
       rs.toIterator
     })
-    result.flatMap { e => e.toIterator }.collect().take(10).foreach(println)
+    println("count:"+result.count())
+    result.collect().take(10).foreach(println)
   }
 }
