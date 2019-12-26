@@ -11,7 +11,7 @@ import org.apache.spark.rdd.RDD
 import scala.collection.mutable
 import scala.reflect.ClassTag
 /**
-	* Created by dashi on 2019-07-25
+	* Created by wangdashi on 2019-07-25
 	*/
 object Utils {
 

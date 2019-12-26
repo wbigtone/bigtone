@@ -1,9 +1,9 @@
-package com.haizhi.algorithm
+package com.haizhi.work.algorithm
 
 import org.apache.log4j.{LogManager, Logger}
 
 /**
-  * Created by zhoujiamu on 2017/9/2.
+  * Created by wangdashi on 2017/9/2.
   * 图挖掘算法入口
   */
 object AlgorithmMinerEntry {

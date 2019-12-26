@@ -1,4 +1,4 @@
-package com.haizhi.graphx
+package com.haizhi.spark.graphx
 
 import com.alibaba.fastjson.support.odps.udf.CodecCheck.A
 import org.apache.spark.graphx._

@@ -1,4 +1,4 @@
-package com.haizhi.common
+package com.haizhi.work.common
 
 import java.io.{File, FileInputStream}
 import java.io.InputStreamReader
@@ -8,7 +8,7 @@ import org.apache.log4j.{LogManager, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Created by zhoujiamu on 2017/8/25.
+  * Created by wangdashi on 2017/8/25.
   */
 
 object Configure {

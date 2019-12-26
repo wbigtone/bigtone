@@ -1,7 +1,7 @@
-package com.haizhi.algorithm
+package com.haizhi.work.algorithm
 
 /**
-  * Created by zhoujiamu on 2017/9/2.
+  * Created by wangdashi on 2017/9/2.
   * 图挖掘算法公共接口
   */
 

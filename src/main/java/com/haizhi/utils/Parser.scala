@@ -12,7 +12,7 @@ import org.json4s.jackson.Serialization
 import org.json4s.{Diff, JValue, ShortTypeHints}
 
 /**
-  * Created by dashi on 2019-07-25
+  * Created by wangdashi on 2019-07-25
   */
 object Parser {
   val log: Logger = LogManager.getLogger(getClass)

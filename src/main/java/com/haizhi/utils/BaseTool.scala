@@ -19,7 +19,7 @@ import org.json4s.jackson.Serialization
 import scala.collection.immutable
 
 /**
-  * Created by dashi on 2019-07-25
+  * Created by wangdashi on 2019-07-25
   */
 object BaseTool {
 

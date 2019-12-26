@@ -1,4 +1,4 @@
-package com.haizhi.graphx
+package com.haizhi.spark.graphx
 
 import org.apache.spark.graphx.{Edge, _}
 import org.apache.spark.graphx.util.GraphGenerators

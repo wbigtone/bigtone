@@ -3,7 +3,7 @@ package com.haizhi.utils
 import java.security.MessageDigest
 
 /**
-  * Created by gikieng on 17/8/22.
+  * Created by wangdashi on 17/8/22.
   */
 object KeyUtils {
 	def md5(s: String): String = {
